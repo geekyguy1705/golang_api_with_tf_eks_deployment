@@ -1,0 +1,25 @@
+# Use the official Golang image as a base
+FROM golang:1.20-alpine AS builder
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the source code
+COPY . .
+
+# Download dependencies and build the application
+RUN go mod init simpletimeservice && \
+    go mod tidy && \
+    go build -o simple-time-service
+
+# Use a minimal base image for deployment
+FROM alpine:latest
+
+# Copy the compiled binary from the builder stage
+COPY --from=builder /app/simple-time-service .
+
+# Expose the application's port
+EXPOSE 8080
+
+# Run the application
+ENTRYPOINT ["./simple-time-service"]

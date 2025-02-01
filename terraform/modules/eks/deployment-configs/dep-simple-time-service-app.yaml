@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-simple-time-service-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-simple-time-service-app
+  template:
+    metadata:
+      labels:
+        app: app-simple-time-service-app
+    spec:
+      containers:
+        - name: cont-simple-time-service-app
+          image: abhisheklaha199/simple-time-service:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always

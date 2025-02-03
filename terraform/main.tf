@@ -37,16 +37,6 @@ resource "aws_security_group_rule" "eks-sg-ingress" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
-resource "aws_security_group_rule" "eks-sg-ingress" {
-  description       = "allow inbound traffic from eks"
-  type              = "ingress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = -1
-  security_group_id = aws_security_group.eks-sg.id
-  cidr_blocks       = ["0.0.0.0/0"]
-}
-
 resource "aws_security_group_rule" "eks-sg-egress" {
   description       = "allow outbound traffic to eks"
   type              = "egress"

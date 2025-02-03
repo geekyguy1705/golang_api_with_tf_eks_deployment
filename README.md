@@ -55,3 +55,7 @@ terraform apply
 
 ## Step 4: Access the API
 
+
+## _Known Issues_ : 
+- Helm chart installation for nginx ingress controller is not working as expected due to disabled public EKS access (WIP)
+- Test
